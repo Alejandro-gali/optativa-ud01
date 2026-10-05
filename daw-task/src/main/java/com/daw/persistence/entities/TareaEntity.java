@@ -1,6 +1,8 @@
-package com.daw.persistence.entities.enums;
+package com.daw.persistence.entities;
 
 import java.time.LocalDate;
+
+import com.daw.persistence.entities.enums.Estado;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
