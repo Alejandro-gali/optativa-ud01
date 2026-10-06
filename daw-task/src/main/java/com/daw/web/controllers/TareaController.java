@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.persistence.entities.TareaEntity;
-import com.daw.services.TareaNotFoundException;
 import com.daw.services.TareaService;
+import com.daw.services.exceptions.TareaNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,8 +40,33 @@ public class TareaController {
 		}
 
 	}
-	
+
+	@DeleteMapping("/{idTarea}")
+	public ResponseEntity<?> deleteById(@PathVariable long idTarea) {
+		try {
+			this.tareaService.deleteById(idTarea);
+			return ResponseEntity.ok().build();
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		}
+	}
+
 	@PostMapping
-	public ResponseEntity<List<TareaEntity>> createTarea(@RequestBody long id){
+	public ResponseEntity<?> create(@RequestBody TareaEntity tareaEntity) {
+		try {
+			return ResponseEntity.status(HttpStatus.CREATED).body(this.tareaService.create(tareaEntity));
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		}
+	}
+
+	@PutMapping("/{idTarea}")
+	public ResponseEntity<?> update(long idTarea, TareaEntity tareaEntity) {
+		try {
+			
+			return ResponseEntity.ok().build();
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		}
 	}
 }

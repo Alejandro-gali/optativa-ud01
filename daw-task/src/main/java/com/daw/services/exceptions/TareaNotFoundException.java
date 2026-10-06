@@ -1,4 +1,4 @@
-package com.daw.services;
+package com.daw.services.exceptions;
 
 public class TareaNotFoundException extends RuntimeException {
 
