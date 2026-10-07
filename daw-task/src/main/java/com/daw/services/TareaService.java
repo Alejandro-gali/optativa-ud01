@@ -3,7 +3,6 @@ package com.daw.services;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daw.persistence.entities.TareaEntity;
@@ -42,19 +41,20 @@ public class TareaService {
 	
 	public TareaEntity create(TareaEntity tareaEntity) {
 		if(tareaEntity.getFechaCreacion() != null) {
-			throw new TareaException("La fecha de creación no se puede modificar.");
+			throw new TareaException("La fecha de creación no se puede modificar. ");
 		}
 		if(tareaEntity.getEstado() != null) {
-			throw new TareaException("El estado de la tarea no se puede modificar.");
+			throw new TareaException("El estado no se puede modificar. ");
 		}
-		if(tareaEntity.getFechaVencimiendo().isBefore(LocalDate.now())) {
-			throw new TareaException("La fecha de vencimiento no puede ser antes que la fecha de ahora mismo.");
+		if(tareaEntity.getFechaVencimiento().isBefore(LocalDate.now())) {
+			throw new TareaException("La fecha de vencimiento debe ser posterior a la fecha de creación.");
 		}
 		
-		// Confirmar que la tarea lleve un id inexistente
+		// La tarea debe llevar un id que no existe
 		tareaEntity.setId(0L);
 		tareaEntity.setEstado(Estado.PENDIENTE);
-		tareaEntity.setFechaCreacion(LocalDate.now());
+		tareaEntity.setFechaCreacion(LocalDate.now());		
+		
 		return this.tareaRepository.save(tareaEntity);
 	}
 
@@ -63,15 +63,39 @@ public class TareaService {
 			throw new TareaException("El id del body y el id del path no coinciden. ");
 		}
 		if(tareaEntity.getFechaCreacion() != null) {
-			throw new TareaException("La fecha de creación no se puede modificar.");
+			throw new TareaException("La fecha de creación no se puede modificar. ");
 		}
 		if(tareaEntity.getEstado() != null) {
-			throw new TareaException("El estado de la tarea no se puede modificar.");
+			throw new TareaException("El estado no se puede modificar. ");
 		}
-		if(tareaEntity.getFechaVencimiendo().isBefore(LocalDate.now())) {
-			throw new TareaException("La fecha de vencimiento no puede ser antes que la fecha de ahora mismo.");
+		if(tareaEntity.getFechaVencimiento().isBefore(LocalDate.now())) {
+			throw new TareaException("La fecha de vencimiento debe ser posterior a la fecha de creación.");
 		}
 		
 		return this.tareaRepository.save(tareaEntity);
+	}
+	
+	public TareaEntity iniciar(long idTarea) {
+		TareaEntity tarea = this.findById(idTarea);
+		
+		if(!tarea.getEstado().equals(Estado.PENDIENTE)) {
+			throw new TareaException("No se puede iniciar una tarea en progreso o completada.");
+		}
+		
+		tarea.setEstado(Estado.EN_PROGRESO);
+		return this.tareaRepository.save(tarea);
+		
+	}
+	
+	public TareaEntity completar(long idTarea) {
+		TareaEntity tarea = this.findById(idTarea);
+		
+		if(!tarea.getEstado().equals(Estado.EN_PROGRESO)) {
+			throw new TareaException("No se puede iniciar una tarea en progreso o completada.");
+		}
+		
+		tarea.setEstado(Estado.COMPLETADA);
+		return this.tareaRepository.save(tarea);
+		
 	}
 }

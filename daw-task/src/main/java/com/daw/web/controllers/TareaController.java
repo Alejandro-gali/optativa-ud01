@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.persistence.entities.TareaEntity;
 import com.daw.services.TareaService;
+import com.daw.services.exceptions.TareaException;
 import com.daw.services.exceptions.TareaNotFoundException;
 
 import lombok.RequiredArgsConstructor;
@@ -55,8 +56,8 @@ public class TareaController {
 	public ResponseEntity<?> create(@RequestBody TareaEntity tareaEntity) {
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(this.tareaService.create(tareaEntity));
-		} catch (TareaNotFoundException ae) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		} catch (TareaException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 		}
 	}
 
@@ -68,4 +69,31 @@ public class TareaController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
 		}
 	}
+
+	@GetMapping("/{idTarea}/iniciar")
+	public ResponseEntity<?> iniciar(@PathVariable long idTarea) {
+		try {
+			return ResponseEntity.ok(this.tareaService.iniciar(idTarea));
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		} catch (TareaException ae) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		}
+
+	}
+
+	@GetMapping("/{idTarea}/completar")
+	public ResponseEntity<?> completar(@PathVariable long idTarea) {
+		try {
+			return ResponseEntity.ok(this.tareaService.completar(idTarea));
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		} catch (TareaException ae) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		}
+
+	}
+	
+	
+
 }

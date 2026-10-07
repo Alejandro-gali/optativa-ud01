@@ -25,15 +25,15 @@ public class TareaEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	private String titulo;
-	private String descripccion;
+	private String descripcion;
 	
 	@Column(name="fecha_creacion")
 	private LocalDate fechaCreacion;
 	
 	@Column(name="fecha_vencimiento")
-	private LocalDate fechaVencimiendo;
+	private LocalDate fechaVencimiento;
 	
 	@Enumerated(value = EnumType.STRING)
 	private Estado estado;
