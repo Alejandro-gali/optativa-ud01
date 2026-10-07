@@ -63,10 +63,9 @@ public class TareaController {
 	@PutMapping("/{idTarea}")
 	public ResponseEntity<?> update(long idTarea, TareaEntity tareaEntity) {
 		try {
-			
-			return ResponseEntity.ok().build();
+			return ResponseEntity.ok(this.tareaService.update(idTarea, tareaEntity));
 		} catch (TareaNotFoundException ae) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
 		}
 	}
 }

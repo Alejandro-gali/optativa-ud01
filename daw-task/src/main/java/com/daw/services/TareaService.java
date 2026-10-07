@@ -58,9 +58,9 @@ public class TareaService {
 		return this.tareaRepository.save(tareaEntity);
 	}
 
-	public TareaEntity update(TareaEntity tareaEntity) {
-		if() {
-			
+	public TareaEntity update(long idTarea, TareaEntity tareaEntity) {
+		if(tareaEntity.getId() != idTarea) {
+			throw new TareaException("El id del body y el id del path no coinciden. ");
 		}
 		if(tareaEntity.getFechaCreacion() != null) {
 			throw new TareaException("La fecha de creación no se puede modificar.");
