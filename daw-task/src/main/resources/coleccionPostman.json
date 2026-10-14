@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "32628779-1385-4243-a126-d2c4cd20e785",
+    "name": "daw-task",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54930959",
+    "_collection_link": "https://go.postman.co/collection/54930959-32628779-1385-4243-a126-d2c4cd20e785?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "/tareas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tarea/{idTarea}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/18",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "18"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/{id}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/5",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"descripcion\": \"Añadir un campo de comentarios a las tareas para que los usuarios puedan dejar notas de seguimiento.\",\r\n    \"fechaVencimiento\": \"2027-04-14\",\r\n    \"titulo\": \"Comentarios en tareas\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/tareas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas{id}",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 4,\r\n    \"titulo\": \"Crear Repositorios JPA Actualizados\",\r\n    \"descripcion\": \"Desarrollar y probar las interfaces de Spring Data JPA con métodos avanzados.\",\r\n    \"fechaVencimiento\": \"2026-10-20\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/tareas/4",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/{id}",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/{id}/iniciar",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 4,\r\n    \"titulo\": \"Crear Repositorios\",\r\n    \"descripcion\": \"Desarrollar las interfaces de Spring Data JPA con métodos de consulta personalizados.\",\r\n    \"fechaCreacion\": \"2026-10-04\",\r\n    \"fechaVencimiento\": \"2026-10-10\",\r\n    \"estado\": \"EN_PROGRESO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/tareas/4/iniciar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "4",
+            "iniciar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/{id}/completar",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 4,\r\n    \"titulo\": \"Crear Repositorios\",\r\n    \"descripcion\": \"Desarrollar las interfaces de Spring Data JPA...\",\r\n    \"fechaCreacion\": \"2026-10-04\",\r\n    \"fechaVencimiento\": \"2026-10-10\",\r\n    \"estado\": \"COMPLETADA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/tareas/4/completar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "4",
+            "completar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/pendientes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/pendientes",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "pendientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/en_progreso",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/en_progreso",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "en_progreso"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/completadas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/completadas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "completadas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/vencidas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/vencidas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "vencidas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/no_vencidas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/no_vencidas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "no_vencidas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/tareas/titulo?titulo=----",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/tareas/titulo?titulo=Docker",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "tareas",
+            "titulo"
+          ],
+          "query": [
+            {
+              "key": "titulo",
+              "value": "Docker"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

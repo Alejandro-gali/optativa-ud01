@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.persistence.entities.TareaEntity;
@@ -66,11 +67,13 @@ public class TareaController {
 		try {
 			return ResponseEntity.ok(this.tareaService.update(idTarea, tareaEntity));
 		} catch (TareaNotFoundException ae) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		} catch (TareaException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 		}
 	}
 
-	@GetMapping("/{idTarea}/iniciar")
+	@PutMapping("/{idTarea}/iniciar")
 	public ResponseEntity<?> iniciar(@PathVariable long idTarea) {
 		try {
 			return ResponseEntity.ok(this.tareaService.iniciar(idTarea));
@@ -82,7 +85,7 @@ public class TareaController {
 
 	}
 
-	@GetMapping("/{idTarea}/completar")
+	@PutMapping("/{idTarea}/completar")
 	public ResponseEntity<?> completar(@PathVariable long idTarea) {
 		try {
 			return ResponseEntity.ok(this.tareaService.completar(idTarea));
@@ -93,7 +96,66 @@ public class TareaController {
 		}
 
 	}
-	
-	
+
+	@GetMapping("/pendientes")
+	public ResponseEntity<?> findPendientes() {
+		List<TareaEntity> lista = this.tareaService.findPendientes();
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron tareas en estado PENDIENTE.");
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping("/en_progreso")
+	public ResponseEntity<?> findEnProgreso() {
+		List<TareaEntity> lista = this.tareaService.findEnProgreso();
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron tareas EN_PROGRESO.");
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping("/completadas")
+	public ResponseEntity<?> findCompletadas() {
+		List<TareaEntity> lista = this.tareaService.findCompletadas();
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron tareas COMPLETADAS.");
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping("/vencidas")
+	public ResponseEntity<?> findVencidas() {
+		List<TareaEntity> lista = this.tareaService.findVencidas();
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay tareas vencidas en el sistema.");
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping("/no_vencidas")
+	public ResponseEntity<?> findNoVencidas() {
+		List<TareaEntity> lista = this.tareaService.findNoVencidas();
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay tareas pendientes de vencer.");
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping("/titulo")
+	public ResponseEntity<?> findByTitulo(@RequestParam String titulo) {
+		try {
+			List<TareaEntity> lista = this.tareaService.findByTituloContaining(titulo);
+			if (lista.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body("No se encontró ninguna tarea que contenga el título: '" + titulo + "'.");
+			}
+			return ResponseEntity.ok(lista);
+		} catch (TareaException ae) {
+			// Atrapa el error si el cliente mandó el parámetro del título totalmente en
+			// blanco
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		}
+	}
 
 }

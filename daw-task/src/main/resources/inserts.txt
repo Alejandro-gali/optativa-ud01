@@ -1,0 +1,11 @@
+INSERT INTO tarea (titulo, descripcion, fecha_creacion, fecha_vencimiento, estado) VALUES
+('Configurar entorno de desarrollo', 'Instalar Java 17, Maven y configurar Spring Boot en el IDE.', '2026-10-01', '2026-10-05', 'COMPLETADA'),
+('Diseñar base de datos', 'Crear el modelo entidad-relación y verificar el archivo docker-compose.', '2026-10-02', '2026-10-07', 'COMPLETADA'),
+('Implementar Entidades JPA', 'Añadir anotaciones de JPA y Lombok en las clases de persistencia.', '2026-10-03', '2026-10-08', 'COMPLETADA'),
+('Crear Repositorios', 'Desarrollar las interfaces de Spring Data JPA con métodos de consulta personalizados.', '2026-10-04', '2026-10-10', 'EN_PROGRESO'),
+('Desarrollar Servicios', 'Escribir la lógica de negocio para la gestión de creación, actualización y filtrado.', '2026-10-05', '2026-10-12', 'EN_PROGRESO'),
+('Programar Controladores REST', 'Exponer los endpoints del API REST en el TareaController.', '2026-10-06', '2026-10-15', 'PENDIENTE'),
+('Implementar Manejo de Excepciones', 'Crear excepciones personalizadas para errores de tareas no encontradas y validaciones.', '2026-10-07', '2026-10-18', 'PENDIENTE'),
+('Escribir Pruebas Unitarias', 'Añadir tests para los servicios y validar las reglas de negocio de las fechas.', '2026-10-08', '2026-10-22', 'PENDIENTE'),
+('Documentar la API', 'Añadir descripciones claras a los endpoints para facilitar el consumo del cliente.', '2026-10-09', '2026-10-25', 'PENDIENTE'),
+('Desplegar en Docker', 'Levantar los contenedores de MariaDB y phpMyAdmin en local para pruebas finales.', '2026-10-10', '2026-10-30', 'PENDIENTE');
