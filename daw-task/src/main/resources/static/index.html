@@ -20,10 +20,10 @@
         <div class="container navbar-content">
             <div class="brand">
                 <span class="brand-icon">⚡</span>
-                <h1>DAW Full-Stack App</h1>
+                <h1>daw-task</h1>
             </div>
             <!-- [ALUMNO] Añadir aquí los botones de acción principal si es necesario -->
-            <button id="btn-nuevo" class="btn btn-primary">+ Nuevo Registro</button>
+            <button id="btn-nuevo" class="btn btn-primary">+ Nueva tarea</button>
         </div>
     </header>
 
@@ -45,7 +45,7 @@
         <!-- [ALUMNO] TABLA / LISTADO DE DATOS -->
         <section class="card">
             <div class="card-header">
-                <h2>Listado de Entidades</h2>
+                <h2>Listado de Tareas</h2>
                 <button id="btn-recargar" class="btn btn-secondary btn-sm">🔄 Recargar</button>
             </div>
             
@@ -55,7 +55,7 @@
                         <tr>
                             <!-- [ALUMNO] Definir aquí las columnas de la tabla -->
                             <th style="width: 60px;">ID</th>
-                            <th>Título</th>
+                            <th>Titulo</th>
                             <th>Creada</th>
                             <th>Vencimiento</th>
                             <th>Estado</th>
@@ -94,13 +94,13 @@
                 <div class="modal-body">
 
                     <!-- Campo oculto para ID (necesario en el modo Edición) -->
-                    <input type="hidden" id="campo-id">
+                    <input type="hidden" id="tarea-id">
 
                     <!-- [ALUMNO] Campos del formulario según la entidad -->
 
                     <!-- TEXTO CORTO -->
                     <div class="form-group">
-                        <label for="tarea-titulo">Título<span class="req">*</span></label>
+                        <label for="tarea-titulo">Título <span class="req">*</span></label>
                         <input type="text" id="tarea-titulo" required placeholder="Ingrese el título...">
                     </div>
 
@@ -118,7 +118,9 @@
                             <input type="date" id="tarea-fecha-vencimiento" required>
                         </div>
 
-                        <!-- SELECT / ENUM -->
+                    </div>
+                    
+                    <!-- SELECT / ENUM -->
                         <!-- <div class="form-group">
                             <label for="campo-select">Estado (Enum)</label>
                             <select id="campo-select">
@@ -127,8 +129,6 @@
                                 <option value="OPCION_3">OPCION_3</option>
                             </select>
                         </div> -->
-
-                    </div>
 
                     <!-- NUMÉRICO (descomenta si lo necesitas) -->
                     <!--

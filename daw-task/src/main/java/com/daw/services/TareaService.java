@@ -72,7 +72,13 @@ public class TareaService {
 			throw new TareaException("La fecha de vencimiento debe ser posterior a la fecha de creación.");
 		}
 		
-		return this.tareaRepository.save(tareaEntity);
+		TareaEntity tareaBD = this.findById(idTarea);
+		
+		tareaBD.setTitulo(tareaEntity.getTitulo());
+		tareaBD.setDescripcion(tareaEntity.getDescripcion());
+		tareaBD.setFechaVencimiento(tareaEntity.getFechaVencimiento());
+		
+		return this.tareaRepository.save(tareaBD);
 	}
 	
 	public TareaEntity iniciar(long idTarea) {

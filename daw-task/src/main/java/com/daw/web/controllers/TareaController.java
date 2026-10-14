@@ -62,7 +62,7 @@ public class TareaController {
 	}
 
 	@PutMapping("/{idTarea}")
-	public ResponseEntity<?> update(long idTarea, TareaEntity tareaEntity) {
+	public ResponseEntity<?> update(@PathVariable long idTarea, @RequestBody TareaEntity tareaEntity) {
 		try {
 			return ResponseEntity.ok(this.tareaService.update(idTarea, tareaEntity));
 		} catch (TareaNotFoundException ae) {
