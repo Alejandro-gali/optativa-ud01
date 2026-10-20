@@ -1,0 +1,16 @@
+INSERT INTO pokemon (numero_pokedex, titulo, tipo1, tipo2, fecha_captura, capturado) VALUES
+(1, 'Bulbasaur', 'PLANTA', 'VENENO', '2026-01-10', 'POKEBALL'),
+(4, 'Charmander', 'FUEGO', 'NINGUNO', '2026-01-12', 'SUPERBALL'),
+(7, 'Squirtle', 'AGUA', 'NINGUNO', '2026-01-15', 'POKEBALL'),
+(25, 'Pikachu', 'ELECTRICO', 'NINGUNO', '2026-02-01', 'ULTRABALL'),
+(6, 'Charizard', 'FUEGO', 'VOLADOR', '2026-02-05', 'ULTRABALL'),
+(39, 'Jigglypuff', 'NORMAL', 'NINGUNO', '2026-02-10', 'SUPERBALL'),
+(12, 'Butterfree', 'BICHO', 'VOLADOR', '2026-02-14', 'POKEBALL'),
+(94, 'Gengar', 'FANTASMA', 'VENENO', '2026-03-01', 'ULTRABALL'),
+(130, 'Gyarados', 'AGUA', 'VOLADOR', '2026-03-08', 'ULTRABALL'),
+(143, 'Snorlax', 'NORMAL', 'NINGUNO', '2026-03-12', 'SUPERBALL'),
+(149, 'Dragonite', 'DRAGON', 'VOLADOR', '2026-04-01', 'ULTRABALL'),
+(59, 'Arcanine', 'FUEGO', 'NINGUNO', '2026-04-05', 'SUPERBALL'),
+(68, 'Machamp', 'LUCHA', 'NINGUNO', '2026-04-10', 'POKEBALL'),
+(131, 'Lapras', 'AGUA', 'HIELO', '2026-05-02', 'SUPERBALL'),
+(76, 'Golem', 'ROCA', 'TIERRA', '2026-05-15', 'POKEBALL');
