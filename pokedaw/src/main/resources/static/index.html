@@ -23,7 +23,7 @@
                 <h1>DAW Full-Stack App</h1>
             </div>
             <!-- [ALUMNO] Añadir aquí los botones de acción principal si es necesario -->
-            <button id="btn-nuevo" class="btn btn-primary">+ Nuevo Registro</button>
+            <button id="btn-nuevo" class="btn btn-primary">+ Nuevo Pokemon</button>
         </div>
     </header>
 
@@ -45,7 +45,7 @@
         <!-- [ALUMNO] TABLA / LISTADO DE DATOS -->
         <section class="card">
             <div class="card-header">
-                <h2>Listado de Entidades</h2>
+                <h2>Listado de Pokemons</h2>
                 <button id="btn-recargar" class="btn btn-secondary btn-sm">🔄 Recargar</button>
             </div>
             
@@ -55,8 +55,12 @@
                         <tr>
                             <!-- [ALUMNO] Definir aquí las columnas de la tabla -->
                             <th style="width: 60px;">ID</th>
-                            <th>Campo 1</th>
-                            <th>Campo 2</th>
+                            <th>Número de Pokedex</th>
+                            <th>Título</th>
+                            <th>Tipo 1</th>
+                            <th>Tipo 2</th>
+                            <th>Fecha de Captura</th>
+                            <th>Capturado</th>
                             <th style="width: 140px; text-align: center;">Acciones</th>
                         </tr>
                     </thead>
@@ -85,7 +89,7 @@
     <div id="modal-form" class="modal-overlay hidden">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="modal-form-titulo">Nuevo Registro</h3>
+                <h3 id="modal-form-titulo">Nuevo Pokemon</h3>
                 <button id="btn-cerrar-form" class="btn-icon-close">&times;</button>
             </div>
             <form id="form-entidad">
@@ -96,45 +100,79 @@
 
                     <!-- [ALUMNO] Campos del formulario según la entidad -->
 
-                    <!-- TEXTO CORTO -->
+                    <!-- Título -->
                     <div class="form-group">
-                        <label for="campo-texto">Texto Corto <span class="req">*</span></label>
-                        <input type="text" id="campo-texto" required placeholder="Ingrese texto...">
+                        <label for="titulo">Título / Nombre <span class="req">*</span></label>
+                        <input type="text" id="titulo" required placeholder="Ingrese el nombre del pokemon...">
                     </div>
-
-                    <!-- TEXTO LARGO -->
+                    
+                    <!-- NUMÉRICO (descomenta si lo necesitas) -->
+           
                     <div class="form-group">
-                        <label for="campo-textarea">Texto Largo</label>
-                        <textarea id="campo-textarea" rows="3" placeholder="Ingrese descripción..."></textarea>
+                        <label for="numero-pokedex">Número Pokedex</label>
+                        <input type="number" id="numero-pokedex" step="0.01" min="0">
+                    </div>
+                    
+                    <!-- CAPTURADO -->
+
+					<div class="form-group">
+                            <label for="capturado">Capturado</label>
+                            <select id="capturado">
+                                <option value="POKEBALL">POKEBALL</option>
+                                <option value="SUPERBALL">SUPERBALL</option>
+                                <option value="ULTRABALL">ULTRABALL</option>
+                            </select>
                     </div>
 
                     <div class="form-row">
 
-                        <!-- FECHA -->
-                        <div class="form-group">
-                            <label for="campo-fecha">Fecha <span class="req">*</span></label>
-                            <input type="date" id="campo-fecha" required>
-                        </div>
-
                         <!-- SELECT / ENUM -->
                         <div class="form-group">
-                            <label for="campo-select">Estado (Enum)</label>
-                            <select id="campo-select">
-                                <option value="OPCION_1">OPCION_1</option>
-                                <option value="OPCION_2">OPCION_2</option>
-                                <option value="OPCION_3">OPCION_3</option>
+                            <label for="tipo1">TIPO 1</label>
+                            <select id="tipo1">
+                                <option value="BICHO">BICHO</option>
+                                <option value="DRAGON">DRAGON</option>
+                                <option value="ELECTRICO">ELECTRICO</option>
+                                <option value="LUCHA">LUCHA</option>
+                                <option value="FUEGO">FUEGO</option>
+                                <option value="VOLADOR">VOLADOR</option>
+                                <option value="FANTASMA">FANTASMA</option>
+                                <option value="PLANTA">PLANTA</option>
+                                <option value="TIERRA">TIERRA</option>
+                                <option value="HIELO">HIELO</option>
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="VENENO">VENENO</option>
+                                <option value="PSIQUICO">PSIQUICO</option>
+                                <option value="ROCA">ROCA</option>
+                                <option value="AGUA">AGUA</option>
+                                <option value="NINGUNO">NINGUNO</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo2">TIPO 2</label>
+                            <select id="tipo2">
+                                <option value="BICHO">BICHO</option>
+                                <option value="DRAGON">DRAGON</option>
+                                <option value="ELECTRICO">ELECTRICO</option>
+                                <option value="LUCHA">LUCHA</option>
+                                <option value="FUEGO">FUEGO</option>
+                                <option value="VOLADOR">VOLADOR</option>
+                                <option value="FANTASMA">FANTASMA</option>
+                                <option value="PLANTA">PLANTA</option>
+                                <option value="TIERRA">TIERRA</option>
+                                <option value="HIELO">HIELO</option>
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="VENENO">VENENO</option>
+                                <option value="PSIQUICO">PSIQUICO</option>
+                                <option value="ROCA">ROCA</option>
+                                <option value="AGUA">AGUA</option>
+                                <option value="NINGUNO">NINGUNO</option>
                             </select>
                         </div>
 
                     </div>
-
-                    <!-- NUMÉRICO (descomenta si lo necesitas) -->
-                    <!--
-                    <div class="form-group">
-                        <label for="campo-numero">Número</label>
-                        <input type="number" id="campo-numero" step="0.01" min="0">
-                    </div>
-                    -->
+                    
 
                     <!-- BOOLEANO / CHECKBOX (descomenta si lo necesitas) -->
                     <!--

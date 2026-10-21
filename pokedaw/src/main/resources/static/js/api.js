@@ -10,7 +10,7 @@
  *    - POST/PUT: NO envíes campos que el service prohíba (ej: estado, fechaCreacion)
  */
 
-const BASE_URL = '/cambiar-por-tu-endpoint'; // Ejemplo: '/tareas'
+const BASE_URL = '/pokemons'; // Ejemplo: '/tareas'
 
 export const ApiService = {
 

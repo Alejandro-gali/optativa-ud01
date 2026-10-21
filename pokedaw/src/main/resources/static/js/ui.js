@@ -12,16 +12,16 @@
 export const UIService = {
 
     elements: {
-        tbody:            document.getElementById('tabla-tbody'),
-        loadingState:     document.getElementById('loading-state'),
-        emptyState:       document.getElementById('empty-state'),
-        modalForm:        document.getElementById('modal-form'),
-        modalFormTitulo:  document.getElementById('modal-form-titulo'),
-        formEntidad:      document.getElementById('form-entidad'),
-        modalDetalle:     document.getElementById('modal-detalle'),
-        detalleContent:   document.getElementById('detalle-content'),
-        toastContainer:   document.getElementById('toast-container'),
-        statTotal:        document.getElementById('stat-total')
+        tbody: document.getElementById('tabla-tbody'),
+        loadingState: document.getElementById('loading-state'),
+        emptyState: document.getElementById('empty-state'),
+        modalForm: document.getElementById('modal-form'),
+        modalFormTitulo: document.getElementById('modal-form-titulo'),
+        formEntidad: document.getElementById('form-entidad'),
+        modalDetalle: document.getElementById('modal-detalle'),
+        detalleContent: document.getElementById('detalle-content'),
+        toastContainer: document.getElementById('toast-container'),
+        statTotal: document.getElementById('stat-total')
     },
 
     // ------------------------------------------------------------------
@@ -30,8 +30,8 @@ export const UIService = {
 
     showLoading() {
         if (this.elements.loadingState) this.elements.loadingState.classList.remove('hidden');
-        if (this.elements.emptyState)   this.elements.emptyState.classList.add('hidden');
-        if (this.elements.tbody)        this.elements.tbody.innerHTML = '';
+        if (this.elements.emptyState) this.elements.emptyState.classList.add('hidden');
+        if (this.elements.tbody) this.elements.tbody.innerHTML = '';
     },
 
     /**
@@ -44,19 +44,23 @@ export const UIService = {
 
         if (!items || items.length === 0) {
             if (this.elements.emptyState) this.elements.emptyState.classList.remove('hidden');
-            if (this.elements.tbody)      this.elements.tbody.innerHTML = '';
-            if (this.elements.statTotal)  this.elements.statTotal.textContent = '0';
+            if (this.elements.tbody) this.elements.tbody.innerHTML = '';
+            if (this.elements.statTotal) this.elements.statTotal.textContent = '0';
             return;
         }
 
         if (this.elements.emptyState) this.elements.emptyState.classList.add('hidden');
-        if (this.elements.statTotal)  this.elements.statTotal.textContent = items.length;
+        if (this.elements.statTotal) this.elements.statTotal.textContent = items.length;
 
         this.elements.tbody.innerHTML = items.map(item => `
             <tr>
                 <td><strong>#${item.id}</strong></td>
-                <td>${this.escapeHTML(item.campo1)}</td>
-                <td>${this.escapeHTML(item.campo2)}</td>
+                <td>${this.escapeHTML(item.numeroPokedex)}</td>
+                <td>${this.escapeHTML(item.titulo)}</td>
+				<td>${this.escapeHTML(item.tipo1)}</td>
+				<td>${this.escapeHTML(item.tipo2)}</td>
+				<td>${this.escapeHTML(item.fechaCaptura)}</td>
+				<td>${this.escapeHTML(item.capturado)}</td>
                 <td style="text-align: center;">
                     <button class="btn-action btn-ver"    data-id="${item.id}" title="Ver Detalle">👁️ Ver</button>
                     <button class="btn-action btn-editar" data-id="${item.id}" title="Editar">✏️ Editar</button>
@@ -82,11 +86,13 @@ export const UIService = {
         if (item) {
             // MODO EDICIÓN: rellenar cada input con los datos del registro
             this.elements.modalFormTitulo.textContent = `Editar Registro #${item.id}`;
-            document.getElementById('campo-id').value     = item.id;
+            document.getElementById('campo-id').value = item.id;
             // [ALUMNO] Rellenar aquí el resto de campos:
-            // document.getElementById('campo-texto').value  = item.campo1 || '';
-            // document.getElementById('campo-fecha').value  = item.campofecha || '';
-            // document.getElementById('campo-select').value = item.campoEnum || '';
+            document.getElementById('titulo').value = item.titulo || '';
+            document.getElementById('numero-pokedex').value = item.numero - pokedex || '';
+            document.getElementById('capturado').value = item.capturado || '';
+            document.getElementById('tipo1').value = item.tipo1 || '';
+            document.getElementById('tipo2').value = item.tipo2 || '';
         } else {
             // MODO CREACIÓN: limpiar el campo oculto de ID
             this.elements.modalFormTitulo.textContent = 'Nuevo Registro';
@@ -115,13 +121,29 @@ export const UIService = {
                 <div class="detail-value"><strong>#${item.id}</strong></div>
             </div>
             <div class="detail-item">
-                <div class="detail-label">Campo 1</div>
-                <div class="detail-value">${this.escapeHTML(item.campo1)}</div>
+                <div class="detail-label">Número de Pokedex</div>
+                <div class="detail-value">${this.escapeHTML(item.numeroPokedex)}</div>
             </div>
             <div class="detail-item">
-                <div class="detail-label">Campo 2 (texto largo)</div>
-                <div class="detail-value">${this.escapeHTML(item.campo2 || 'Sin datos.')}</div>
+                <div class="detail-label">Título</div>
+                <div class="detail-value">${this.escapeHTML(item.titulo || 'Sin datos.')}</div>
             </div>
+			<div class="detail-item">
+			    <div class="detail-label">Tipo 1</div>
+			    <div class="detail-value">${this.escapeHTML(item.tipo1 || 'Sin datos.')}</div>
+			</div>
+			<div class="detail-item">
+			    <div class="detail-label">Tipo 2</div>
+			    <div class="detail-value">${this.escapeHTML(item.tipo2 || 'Sin datos.')}</div>
+			</div>
+			<div class="detail-item">
+			    <div class="detail-label">Fecha Captura</div>
+			    <div class="detail-value">${this.escapeHTML(item.fechaCaptura || 'Sin datos.')}</div>
+			</div>
+			<div class="detail-item">
+			    <div class="detail-label">Capturado</div>
+			    <div class="detail-value">${this.escapeHTML(item.capturado || 'Sin datos.')}</div>
+			</div>
         `;
         this.elements.modalDetalle.classList.remove('hidden');
     },
