@@ -61,7 +61,7 @@ public class PokemonService {
 		existente.setNumeroPokedex(pokemonEntity.getNumeroPokedex());
 		existente.setTitulo(pokemonEntity.getTitulo());
 		existente.setTipo1(pokemonEntity.getTipo1());
-		existente.setTipo1(pokemonEntity.getTipo2());
+		existente.setTipo2(pokemonEntity.getTipo2());
 		existente.setCapturado(pokemonEntity.getCapturado());
 
 		return this.pokemonRepository.save(existente);

@@ -80,7 +80,8 @@ function setupEventListeners() {
         }
         // [ALUMNO] Ajusta los campos por los que quieres filtrar
         const filtrados = datosCache.filter(item =>
-            (item.campo1 && item.campo1.toLowerCase().includes(query))
+			[item.titulo, item.numeroPokedex, item.tipo1, item.tipo2, item.capturado]
+			.some(valor => valor != null && String(valor).toLowerCase().includes(query))
         );
         UIService.renderTabla(filtrados);
     });
@@ -120,9 +121,11 @@ async function handleGuardar() {
     const id = document.getElementById('campo-id').value;
 
     // [ALUMNO] Leer los valores de los inputs del modal
-    // const campo1 = document.getElementById('campo-texto').value.trim();
-    // const campo2 = document.getElementById('campo-textarea').value.trim();
-    // const fecha  = document.getElementById('campo-fecha').value;
+	const numeroPokedex = parseInt(document.getElementById('numero-pokedex').value, 10);
+	const titulo        = document.getElementById('titulo').value.trim();
+	const tipo1         = document.getElementById('tipo1').value;
+	const tipo2         = document.getElementById('tipo2').value;
+	const capturado     = document.getElementById('capturado').value;
 
     try {
         if (id) {
@@ -132,9 +135,12 @@ async function handleGuardar() {
             const payloadUpdate = {
                 id: parseInt(id),
                 // [ALUMNO] añadir campos editables:
-                // campo1: campo1,
-                // campo2: campo2,
-                // campofecha: fecha
+                numeroPokedex: numeroPokedex,
+                titulo: titulo,
+                tipo1: tipo1,
+				tipo2: tipo2,
+				fechaCaptura: null,
+				capturado: capturado
             };
             await ApiService.update(id, payloadUpdate);
             UIService.showToast(`Registro #${id} actualizado correctamente.`, 'success');
@@ -143,9 +149,12 @@ async function handleGuardar() {
             // ⚠️ No incluir campos que el service asigne automáticamente (estado, fechaCreacion...)
             const payloadCreate = {
                 // [ALUMNO] añadir campos:
-                // campo1: campo1,
-                // campo2: campo2,
-                // campofecha: fecha
+				numeroPokedex: numeroPokedex,
+				titulo: titulo,
+				tipo1: tipo1,
+				tipo2: tipo2,
+				fechaCaptura: null,
+				capturado: capturado
             };
             const nuevo = await ApiService.create(payloadCreate);
             UIService.showToast(`Registro #${nuevo.id} creado correctamente.`, 'success');

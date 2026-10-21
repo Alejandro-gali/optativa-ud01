@@ -89,7 +89,7 @@ export const UIService = {
             document.getElementById('campo-id').value = item.id;
             // [ALUMNO] Rellenar aquí el resto de campos:
             document.getElementById('titulo').value = item.titulo || '';
-            document.getElementById('numero-pokedex').value = item.numero - pokedex || '';
+            document.getElementById('numero-pokedex').value = item.numeroPokedex ?? '';
             document.getElementById('capturado').value = item.capturado || '';
             document.getElementById('tipo1').value = item.tipo1 || '';
             document.getElementById('tipo2').value = item.tipo2 || '';

@@ -1,0 +1,201 @@
+{
+  "info": {
+    "_postman_id": "bc3e759b-e0da-4967-8eb4-1d34c6b8296e",
+    "name": "pokedaw",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54930959",
+    "_collection_link": "https://go.postman.co/collection/54930959-bc3e759b-e0da-4967-8eb4-1d34c6b8296e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "/pokemons",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/{id}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"numeroPokedex\": 150,\r\n  \"titulo\": \"Mewtwo\",\r\n  \"tipo1\": \"PSIQUICO\",\r\n  \"tipo2\": \"NINGUNO\",\r\n  \"capturado\": \"ULTRABALL\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/pokemons",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/{id}",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 16,\r\n  \"numeroPokedex\": 150,\r\n  \"titulo\": \"Mewtwo\",\r\n  \"tipo1\": \"PSIQUICO\",\r\n  \"tipo2\": \"NINGUNO\",\r\n  \"capturado\": \"SUPERBALL\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/pokemons/16",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "16"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/{id}",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons/16",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "16"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/pokedex",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons/pokedex?numeroPokedex=25",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "pokedex"
+          ],
+          "query": [
+            {
+              "key": "numeroPokedex",
+              "value": "25"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/fecha",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons/fecha?desde=2026-02-01&hasta=2026-02-28",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "fecha"
+          ],
+          "query": [
+            {
+              "key": "desde",
+              "value": "2026-02-01"
+            },
+            {
+              "key": "hasta",
+              "value": "2026-02-28"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/pokemons/tipo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/pokemons/tipo?tipo=FUEGO",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemons",
+            "tipo"
+          ],
+          "query": [
+            {
+              "key": "tipo",
+              "value": "FUEGO"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
