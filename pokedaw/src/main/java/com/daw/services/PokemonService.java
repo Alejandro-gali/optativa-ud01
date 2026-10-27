@@ -92,12 +92,9 @@ public class PokemonService {
 	}
 
 	// Buscar un pokemon de un tipo determinado
-	public List<PokemonEntity> findByTipo(Tipo tipo) {
-		if (tipo == null || tipo == Tipo.NINGUNO) {
-			throw new PokemonException("El tipo indicado no es válido.");
-		}
-
-		return this.pokemonRepository.findByTipo1OrTipo2(tipo, tipo);
+	public List<PokemonEntity> findByTipo(String tipo) {
+		Tipo tipoEnum = Tipo.valueOf(tipo);
+		return this.pokemonRepository.findByTipo1OrTipo2(tipoEnum, tipoEnum);
 	}
 
 	// Validar que el primer tipo sea obligatorio y no sea ninguno
