@@ -79,8 +79,15 @@ function setupEventListeners() {
             return;
         }
         // [ALUMNO] Ajusta los campos por los que quieres filtrar
-        const filtrados = datosCache.filter(item =>
-            (item.campo1 && item.campo1.toLowerCase().includes(query))
+        const filtrados = datosCache.filter(pokemon =>
+            (pokemon.id && pokemon.id.toLowerCase().includes(query)) ||
+            (pokemon.numeroPokedex && pokemon.numeroPokedex.toLowerCase().includes(query)) ||
+            (pokemon.titulo && pokemon.titulo.toLowerCase().includes(query)) ||
+            (pokemon.tipo1 && pokemon.tipo1.toLowerCase().includes(query)) ||
+            (pokemon.tipo2 && pokemon.tipo2.toLowerCase().includes(query)) ||
+            (pokemon.fechaCaptura && pokemon.fechaCaptura.toLowerCase().includes(query)) ||
+            (pokemon.capturado && pokemon.capturado.toLowerCase().includes(query))
+
         );
         UIService.renderTabla(filtrados);
     });
