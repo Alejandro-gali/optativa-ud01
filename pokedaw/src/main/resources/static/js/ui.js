@@ -55,12 +55,12 @@ export const UIService = {
         this.elements.tbody.innerHTML = items.map(item => `
             <tr>
                 <td><strong>#${item.id}</strong></td>
-                <td>${this.escapeHTML(item.numeroPokedex)}</td>
-                <td>${this.escapeHTML(item.titulo)}</td>
-				<td>${this.escapeHTML(item.tipo1)}</td>
-				<td>${this.escapeHTML(item.tipo2)}</td>
-				<td>${this.escapeHTML(item.fechaCaptura)}</td>
-				<td>${this.escapeHTML(item.capturado)}</td>
+                <td>${item.numeroPokedex}</td>
+                <td>${item.titulo}</td>
+				<td>${item.tipo1}</td>
+				<td>${item.tipo2}</td>
+				<td>${item.fechaCaptura}</td>
+				<td>${item.capturado}</td>
                 <td style="text-align: center;">
                     <button class="btn-action btn-ver"    data-id="${item.id}" title="Ver Detalle">👁️ Ver</button>
                     <button class="btn-action btn-editar" data-id="${item.id}" title="Editar">✏️ Editar</button>
@@ -89,7 +89,7 @@ export const UIService = {
             document.getElementById('campo-id').value = item.id;
             // [ALUMNO] Rellenar aquí el resto de campos:
             document.getElementById('titulo').value = item.titulo || '';
-            document.getElementById('numero-pokedex').value = item.numero - pokedex || '';
+            document.getElementById('numero-pokedex').value = item.numeroPokedex || '';
             document.getElementById('capturado').value = item.capturado || '';
             document.getElementById('tipo1').value = item.tipo1 || '';
             document.getElementById('tipo2').value = item.tipo2 || '';
