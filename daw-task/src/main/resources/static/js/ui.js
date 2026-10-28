@@ -12,16 +12,16 @@
 export const UIService = {
 
     elements: {
-        tbody:            document.getElementById('tabla-tbody'),
-        loadingState:     document.getElementById('loading-state'),
-        emptyState:       document.getElementById('empty-state'),
-        modalForm:        document.getElementById('modal-form'),
-        modalFormTitulo:  document.getElementById('modal-form-titulo'),
-        formEntidad:      document.getElementById('form-entidad'),
-        modalDetalle:     document.getElementById('modal-detalle'),
-        detalleContent:   document.getElementById('detalle-content'),
-        toastContainer:   document.getElementById('toast-container'),
-        statTotal:        document.getElementById('stat-total')
+        tbody: document.getElementById('tabla-tbody'),
+        loadingState: document.getElementById('loading-state'),
+        emptyState: document.getElementById('empty-state'),
+        modalForm: document.getElementById('modal-form'),
+        modalFormTitulo: document.getElementById('modal-form-titulo'),
+        formEntidad: document.getElementById('form-entidad'),
+        modalDetalle: document.getElementById('modal-detalle'),
+        detalleContent: document.getElementById('detalle-content'),
+        toastContainer: document.getElementById('toast-container'),
+        statTotal: document.getElementById('stat-total')
     },
 
     // ------------------------------------------------------------------
@@ -30,8 +30,8 @@ export const UIService = {
 
     showLoading() {
         if (this.elements.loadingState) this.elements.loadingState.classList.remove('hidden');
-        if (this.elements.emptyState)   this.elements.emptyState.classList.add('hidden');
-        if (this.elements.tbody)        this.elements.tbody.innerHTML = '';
+        if (this.elements.emptyState) this.elements.emptyState.classList.add('hidden');
+        if (this.elements.tbody) this.elements.tbody.innerHTML = '';
     },
 
     /**
@@ -44,21 +44,22 @@ export const UIService = {
 
         if (!items || items.length === 0) {
             if (this.elements.emptyState) this.elements.emptyState.classList.remove('hidden');
-            if (this.elements.tbody)      this.elements.tbody.innerHTML = '';
-            if (this.elements.statTotal)  this.elements.statTotal.textContent = '0';
+            if (this.elements.tbody) this.elements.tbody.innerHTML = '';
+            if (this.elements.statTotal) this.elements.statTotal.textContent = '0';
             return;
         }
 
         if (this.elements.emptyState) this.elements.emptyState.classList.add('hidden');
-        if (this.elements.statTotal)  this.elements.statTotal.textContent = items.length;
+        if (this.elements.statTotal) this.elements.statTotal.textContent = items.length;
 
         this.elements.tbody.innerHTML = items.map(tarea => `
             <tr>
                 <td><strong>#${tarea.id}</strong></td>
                 <td>${this.escapeHTML(tarea.titulo)}</td>
 				<td>${tarea.fechaCreacion}</td>
-				<td>${tarea.fechaVencimiento}</td>
 				<td>${tarea.estado}</td>
+				<td>${tarea.horasEstimadas}</td>
+				<td>${tarea.prioridad}</td>
                 <td style="text-align: center;">
                     <button class="btn-action btn-ver"    data-id="${tarea.id}" title="Ver Detalle">👁️ Ver</button>
                     <button class="btn-action btn-editar" data-id="${tarea.id}" title="Editar">✏️ Editar</button>
@@ -84,15 +85,15 @@ export const UIService = {
         if (tarea) {
             // MODO EDICIÓN: rellenar cada input con los datos del registro
             this.elements.modalFormTitulo.textContent = `Editar tarea #${tarea.id}`;
-            document.getElementById('tarea-id').value     = tarea.id;
+            document.getElementById('tarea-id').value = tarea.id;
             // [ALUMNO] Rellenar aquí el resto de campos:
-            document.getElementById('tarea-titulo').value  = tarea.titulo || '';
-            document.getElementById('tarea-descripcion').value  = tarea.descripcion || '';
-            document.getElementById('tarea-fecha-vencimiento').value = tarea.fechaVencimiento || '';
+            document.getElementById('tarea-titulo').value = tarea.titulo || '';
+			document.getElementById('tarea-horas-estimadas').value = tarea.horasEstimadas || '';
+			document.getElementById('tarea-prioridad').value = tarea.prioridad || '';
         } else {
             // MODO CREACIÓN: limpiar el campo oculto de ID
             this.elements.modalFormTitulo.textContent = 'Nueva tarea';
-			document.getElementById('tarea-id').value     = '';
+            document.getElementById('tarea-id').value = '';
         }
 
         this.elements.modalForm.classList.remove('hidden');
@@ -120,21 +121,21 @@ export const UIService = {
                 <div class="detail-label">Título</div>
                 <div class="detail-value">${tarea.titulo}</div>
             </div>
-            <div class="detail-item">
-                <div class="detail-label">Descripción</div>
-                <div class="detail-value">${tarea.descripcion || 'Sin datos.'}</div>
-            </div>
 			<div class="detail-item">
 			    <div class="detail-label">Fecha creación</div>
 			    <div class="detail-value">${tarea.fechaCreacion || 'Sin datos.'}</div>
 			</div>
 			<div class="detail-item">
-			    <div class="detail-label">Fecha vencimiento</div>
-			    <div class="detail-value">${tarea.fechaVencimiento || 'Sin datos.'}</div>
-			</div>
-			<div class="detail-item">
 			    <div class="detail-label">Estado</div>
 			    <div class="detail-value">${tarea.estado}</div>
+			</div>
+			<div class="detail-item">
+			    <div class="detail-label">Horas Estimadas</div>
+			    <div class="detail-value">${tarea.horasEstimadas || 'Sin datos.'}</div>
+			</div>
+			<div class="detail-item">
+			    <div class="detail-label">Prioridad</div>
+			    <div class="detail-value">${tarea.prioridad || 'Sin datos.'}</div>
 			</div>
         `;
         this.elements.modalDetalle.classList.remove('hidden');

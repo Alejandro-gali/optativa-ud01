@@ -121,8 +121,8 @@ async function handleGuardar() {
 
     // [ALUMNO] Leer los valores de los inputs del modal
     const titulo = document.getElementById('tarea-titulo').value.trim();
-    const descripcion = document.getElementById('tarea-descripcion').value.trim();
-    const fechaVencimiento  = document.getElementById('tarea-fecha-vencimiento').value;
+    const horasEstimadas = document.getElementById('tarea-horas-estimadas').value;
+    const prioridad  = document.getElementById('tarea-prioridad').value;
 
     try {
         if (id) {
@@ -133,10 +133,10 @@ async function handleGuardar() {
                 id: parseInt(id),
                 // [ALUMNO] añadir campos editables:
                 titulo: titulo,
-                descripcion: descripcion,
-                fechaVencimiento: fechaVencimiento,
 				fechaCreacion: null,
-				estado: null
+				estado: null,
+				horasEstimadas: horasEstimadas,
+				prioridad: prioridad
             };
             await ApiService.update(id, payloadUpdate);
             UIService.showToast(`Tarea #${id} actualizado correctamente.`, 'success');
@@ -146,10 +146,10 @@ async function handleGuardar() {
             const payloadCreate = {
                 // [ALUMNO] añadir campos:
 				titulo: titulo,
-				descripcion: descripcion,
-				fechaVencimiento: fechaVencimiento,
 				fechaCreacion: null,
-				estado: null
+				estado: null,
+				horasEstimadas: horasEstimadas,
+				prioridad: prioridad
             };
             const nuevo = await ApiService.create(payloadCreate);
             UIService.showToast(`Tarea #${nuevo.id} creada correctamente.`, 'success');

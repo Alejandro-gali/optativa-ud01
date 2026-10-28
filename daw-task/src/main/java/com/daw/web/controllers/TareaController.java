@@ -96,6 +96,18 @@ public class TareaController {
 		}
 
 	}
+	
+	@PutMapping("/{idTarea}/revisar")
+	public ResponseEntity<?> revisar(@PathVariable long idTarea) {
+		try {
+			return ResponseEntity.ok(this.tareaService.revisar(idTarea));
+		} catch (TareaNotFoundException ae) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ae.getMessage());
+		} catch (TareaException ae) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+		}
+
+	}
 
 	@GetMapping("/pendientes")
 	public ResponseEntity<?> findPendientes() {
@@ -123,21 +135,12 @@ public class TareaController {
 		}
 		return ResponseEntity.ok(lista);
 	}
-
-	@GetMapping("/vencidas")
-	public ResponseEntity<?> findVencidas() {
-		List<TareaEntity> lista = this.tareaService.findVencidas();
+	
+	@GetMapping("/revisiones")
+	public ResponseEntity<?> findRevisiones() {
+		List<TareaEntity> lista = this.tareaService.findRevisiones();
 		if (lista.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay tareas vencidas en el sistema.");
-		}
-		return ResponseEntity.ok(lista);
-	}
-
-	@GetMapping("/no_vencidas")
-	public ResponseEntity<?> findNoVencidas() {
-		List<TareaEntity> lista = this.tareaService.findNoVencidas();
-		if (lista.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay tareas pendientes de vencer.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron tareas EN_REVISION.");
 		}
 		return ResponseEntity.ok(lista);
 	}

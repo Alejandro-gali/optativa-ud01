@@ -3,6 +3,7 @@ package com.daw.persistence.entities;
 import java.time.LocalDate;
 
 import com.daw.persistence.entities.enums.Estado;
+import com.daw.persistence.entities.enums.Prioridad;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,14 +28,16 @@ public class TareaEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String titulo;
-	private String descripcion;
 	
 	@Column(name="fecha_creacion")
 	private LocalDate fechaCreacion;
 	
-	@Column(name="fecha_vencimiento")
-	private LocalDate fechaVencimiento;
-	
 	@Enumerated(value = EnumType.STRING)
 	private Estado estado;
+	
+	@Column(name="horas_estimadas")
+	private int horasEstimadas;
+	
+	@Enumerated(value = EnumType.STRING)
+	private Prioridad prioridad;
 }

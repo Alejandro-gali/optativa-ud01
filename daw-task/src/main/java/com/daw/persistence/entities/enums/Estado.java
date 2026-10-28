@@ -2,6 +2,6 @@ package com.daw.persistence.entities.enums;
 
 public enum Estado {
 
-	PENDIENTE, EN_PROGRESO, COMPLETADA
+	PENDIENTE, EN_PROGRESO, COMPLETADA, EN_REVISION
 	
 }
